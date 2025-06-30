@@ -50,7 +50,7 @@
     "chalk-template": "^1.0.0",
     "handlebars": "^4.7.7",
     "joi": "^17.12.0",
-    "marked": "^15",
+    "marked": "^16",
     "marked-terminal": "^7",
     "meow": "^13.0.0",
     "moment": "^2.29.1",
