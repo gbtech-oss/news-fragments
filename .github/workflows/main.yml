@@ -32,7 +32,7 @@ jobs:
         run: npm run lint
       - name: Run Build & Test
         run: npm test
-      - uses: SonarSource/sonarqube-scan-action@v5
+      - uses: SonarSource/sonarqube-scan-action@v6
         if: ${{ vars.SONAR_ENABLED == 'true'  && matrix.version == '20' }}
         continue-on-error: true
         env:
