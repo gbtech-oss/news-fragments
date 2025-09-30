@@ -28,7 +28,7 @@ jobs:
         run: npm test
       - name: Publish to npmjs.org
         id: publish
-        uses: JS-DevTools/npm-publish@v3
+        uses: JS-DevTools/npm-publish@v4
         with:
           token: ${{ secrets.NPM_AUTH_TOKEN }}
       - name: Check Version
