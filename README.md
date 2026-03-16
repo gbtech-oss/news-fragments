@@ -8,7 +8,7 @@ Basically, you need to specify a folder to be your center of fragments that will
 
 ## Requirements
 
-- Use Node v20+
+- Use Node v22+
 
 ## Setup
 
