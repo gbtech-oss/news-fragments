@@ -20,7 +20,7 @@ jobs:
         version: [22, 24]
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup Node.js ${{ matrix.version }}
         uses: actions/setup-node@v6
         with:
@@ -32,8 +32,8 @@ jobs:
         run: npm run lint
       - name: Run Build & Test
         run: npm test
-      - uses: SonarSource/sonarqube-scan-action@v6
-        if: ${{ vars.SONAR_ENABLED == 'true'  && matrix.version == '20' }}
+      - uses: SonarSource/sonarqube-scan-action@v7
+        if: ${{ vars.SONAR_ENABLED == 'true'  && matrix.version == '22' }}
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
