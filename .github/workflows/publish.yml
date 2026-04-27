@@ -43,6 +43,6 @@ jobs:
       - name: Generate Release Changelog
         run: ./src/cli/index.js preview -p $RELEASE_VERSION >> release.txt
       - name: Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           body_path: release.txt
