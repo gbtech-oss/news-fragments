@@ -1,1 +1,1 @@
-Replace dependency marked to markdown-it.
+Replace dependency marked with markdown-it.
