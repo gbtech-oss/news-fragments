@@ -1,0 +1,1 @@
+Replace dependency marked to markdown-it.

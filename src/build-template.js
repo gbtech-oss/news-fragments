@@ -13,7 +13,7 @@ ${compiledTemplate}
 }
 
 export const renderTemplate = function (changelogTemplate, data, version) {
-  const compiledTemplate = Handlebars.compile(changelogTemplate);
+  const compiledTemplate = Handlebars.compile(changelogTemplate, { noEscape: true });
   return injectMetadata(compiledTemplate(data), version);
 };
 
