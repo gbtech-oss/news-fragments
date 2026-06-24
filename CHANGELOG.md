@@ -1,4 +1,18 @@
 
+[//]: # (s-4.4.0)
+
+# [4.4.0] - (2026-06-24)
+
+## Features
+* Replace dependency marked with markdown-it.
+
+## Documentation
+* Updates documentation.
+
+
+[//]: # (e-4.4.0)
+
+
 [//]: # (s-4.3.0)
 
 # [4.3.0] - (2026-04-27)
