@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/grupoboticario/news-fragments.git"
+    "url": "git+https://github.com/grupoboticario/news-fragments.git"
   },
   "keywords": [
     "release",
