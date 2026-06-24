@@ -1,15 +1,7 @@
-import { marked } from "marked";
-import TerminalRenderer from "marked-terminal";
-
 import { generateTemplateData, renderTemplate } from "../build-template.js";
 import { newsFragmentsUserConfig } from "../config.js";
 import { getChangelogContent, getFragments } from "../file.js";
-
-marked.setOptions({
-  renderer: new TerminalRenderer({ tab: 0 }),
-  mangle: false,
-  headerIds: false,
-});
+import { renderMarkdownForTerminal } from "./markdown-terminal.js";
 
 export const preview = function (inputs, flags) {
   if (!!flags && flags.previousVersion) {
@@ -18,7 +10,7 @@ export const preview = function (inputs, flags) {
     );
 
     const changelogContent = getChangelogContent(newsFragmentsUserConfig);
-    const previousOutput = marked(
+    const previousOutput = renderMarkdownForTerminal(
       (changelogContent.match(previousVersionRegex) || [""])[0],
     );
 
@@ -42,7 +34,7 @@ export const preview = function (inputs, flags) {
     version,
   );
 
-  const output = marked(renderedTemplate);
+  const output = renderMarkdownForTerminal(renderedTemplate);
   process.stdout.write(output);
 
   return output;
