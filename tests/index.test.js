@@ -117,3 +117,20 @@ test("should return changelog from getChangelog without calling init first", () 
 
   expect(changelog).toContain("Coleta com sucesso");
 });
+
+test("should disable git changelog when the plugin is loaded", () => {
+  const setContext = vi.fn();
+  const getContext = vi.fn((path) =>
+    path === "git" ? { changelog: 'git log --pretty=format:"* %s"' } : {},
+  );
+
+  new Plugin({
+    namespace: "news-fragments",
+    options: {},
+    container: { config: { setContext, getContext } },
+  });
+
+  expect(setContext).toHaveBeenCalledWith({
+    git: { changelog: false },
+  });
+});
