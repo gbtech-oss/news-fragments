@@ -9,6 +9,8 @@ import { newsFragmentsUserConfig } from "./config.js";
 import { deleteFragmentsFiles, getFragments } from "./file.js";
 import { checkChangelogFile, checkFragmentsFolder } from "./helpers.js";
 
+const PREVIEW_VERSION = "NEXT_RELEASE";
+
 export default class NewsFragments extends Plugin {
   start() {
     checkChangelogFile(newsFragmentsUserConfig.changelogFile);
@@ -22,22 +24,47 @@ export default class NewsFragments extends Plugin {
     this.fragmentsToBurn = newsFragments.fragmentsToBurn;
     this.fragmentsToDelete = newsFragments.fragmentsToDelete;
   }
-  bump(version) {
+  renderReleaseEntry(version) {
     const templateData = generateTemplateData(
       version,
       newsFragmentsUserConfig.changelogDateFormat,
       this.fragmentsToBurn,
     );
-    const renderedTemplate = renderTemplate(
+    return renderTemplate(
       newsFragmentsUserConfig.changelogTemplate,
       templateData,
       version,
     );
+  }
+  bump(version) {
+    const renderedTemplate = this.renderReleaseEntry(version);
+    if (this.config?.isDryRun) {
+      this.log?.exec(
+        `news-fragments: prepend release to ${newsFragmentsUserConfig.changelogFile} and delete ${this.fragmentsToDelete.length} fragment file(s)`,
+        { isDryRun: true },
+      );
+      return;
+    }
+
     saveChangelogToFile(
       newsFragmentsUserConfig.changelogFile,
       renderedTemplate,
     );
     deleteFragmentsFiles(this.fragmentsToDelete);
   }
-  getChangelog() {}
+  getChangelog() {
+    const fragmentsToBurn =
+      this.fragmentsToBurn ??
+      getFragments(newsFragmentsUserConfig).fragmentsToBurn;
+
+    if (fragmentsToBurn.length === 0) {
+      return null;
+    }
+
+    if (!this.fragmentsToBurn) {
+      this.fragmentsToBurn = fragmentsToBurn;
+    }
+
+    return this.renderReleaseEntry(PREVIEW_VERSION);
+  }
 }
