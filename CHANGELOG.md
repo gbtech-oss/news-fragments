@@ -1,4 +1,27 @@
 
+[//]: # (s-4.5.0)
+
+# [4.5.0] - (2026-09-02)
+
+[//]: # (e-4.5.0)
+
+
+[//]: # (s-4.5.0)
+
+# [4.5.0] - (2026-09-02)
+
+## Features
+* Respect release-it dry-run during bump and implement getChangelog for release preview.
+
+## Bugfixes
+* Show pending fragments in release-it dry-run preview instead of git log.
+
+## Misc
+* Update dependencies.
+
+[//]: # (e-4.5.0)
+
+
 [//]: # (s-4.4.4)
 
 # [4.4.4] - (2026-06-26)

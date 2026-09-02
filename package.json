@@ -1,6 +1,6 @@
 {
   "name": "news-fragments",
-  "version": "4.4.4",
+  "version": "4.5.0",
   "description": "A release-it plugin to manipulate changelogs",
   "main": "src/index.js",
   "type": "module",
@@ -69,7 +69,10 @@
       "after:bump": "node myself-release.js"
     },
     "plugins": {
-      "./src/index.js": ["news-fragments", {}],
+      "./src/index.js": [
+        "news-fragments",
+        {}
+      ],
       "@release-it/bumper": {
         "out": [
           {
